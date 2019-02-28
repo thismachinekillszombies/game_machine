@@ -1,11 +1,12 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open("README.md", "r") as fh :
     long_description = fh.read()
 
 setup(
     name = 'game_machine',
-    version = '0.1',
+    packages = find_packages(),
+    version = '0.3',
     description = 'A 2D sprite based game engine/PyGame wrapper',
     url="https://github.com/thismachinekillszombies/game_machine",
     long_description = long_description,
@@ -21,7 +22,6 @@ setup(
         "Topic :: Education",
         "Topic :: Games/Entertainment"
         ],
-    packages = [ 'game_machine' ],
     install_requires = [
         'pygame',
     ],
