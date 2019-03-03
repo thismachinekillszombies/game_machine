@@ -170,3 +170,39 @@ class Sprite(EventObject) :
     def size_margin(self):
         size = self.size if self.size != None else (0, 0)
         return (size[0] + (self._margin * 2), size[1] + (self._margin * 2))
+
+    @property
+    def top(self) :
+        bounds = self.bounds()
+        return bounds[0][1]
+
+    @top.setter
+    def top(self, top) :
+        self.y = top - self.height / 2
+
+    @property
+    def bottom(self) :
+        bounds = self.bounds()
+        return bounds[1][1]
+
+    @bottom.setter
+    def bottom(self, bottom) :
+        self.y = bottom + self.height / 2
+
+    @property
+    def left(self) :
+        bounds = self.bounds()
+        return bounds[0][0]
+
+    @left.setter
+    def left(self, left) :
+        self.y = left + self.height / 2
+
+    @property
+    def right(self) :
+        bounds = self.bounds()
+        return bounds[1][0]
+
+    @right.setter
+    def right(self, right) :
+        self.y = right - self.height / 2
