@@ -37,6 +37,7 @@ class Window (Container, EventObject) :
         self.centre = (size[0] / 2, size[1] / 2) if (centre == None) else centre
         self.pygame_events = None
         self.key_pressed = None
+        self.keys_pressed = []
         self.top = size[1] / 2 if cartesian else 0
         self.bottom = -size[1] / 2 if cartesian else size[1]
         self.left = -size[0] / 2 if cartesian else 0
@@ -96,9 +97,11 @@ class Window (Container, EventObject) :
                 elif ev.type == pygame.KEYDOWN :
                     if 0 <= ev.key and ev.key <= 255 :
                         self.key_pressed = chr(ev.key)
+                        self.keys_pressed.append(chr(ev.key))
                     self.trigger('keydown', ev.key)
                 elif ev.type == pygame.KEYUP :
                     self.key_pressed = None
+                    self.keys_pressed.remove(chr(ev.key))
                     self.trigger('keyup', ev.key)
         self.pygame_screen.fill(self.colour)
         for child in self.children :
@@ -147,3 +150,8 @@ class Window (Container, EventObject) :
     @property
     def time(self) :
         return pygame.time.get_ticks() - self.reset
+
+    @property
+    def close_button_pressed(self) :
+        return not self.is_open()
+    

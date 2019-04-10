@@ -25,7 +25,7 @@ class VectorSprite(Sprite) :
 
     @line_width.setter
     def line_width(self, line_width) :
-        self._line_width = line_width
+        self._line_width = int(line_width)
         self._surface = None
 
     @property

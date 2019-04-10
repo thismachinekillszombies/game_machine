@@ -1,4 +1,5 @@
 import pygame
+import math
 
 from ..eventobject import EventObject
 
@@ -178,7 +179,7 @@ class Sprite(EventObject) :
 
     @top.setter
     def top(self, top) :
-        self.y = top - self.height / 2
+        self.y = top - self.height / 2.0
 
     @property
     def bottom(self) :
@@ -187,7 +188,7 @@ class Sprite(EventObject) :
 
     @bottom.setter
     def bottom(self, bottom) :
-        self.y = bottom + self.height / 2
+        self.y = math.floor(bottom + self.height / 2.0)
 
     @property
     def left(self) :
@@ -196,7 +197,7 @@ class Sprite(EventObject) :
 
     @left.setter
     def left(self, left) :
-        self.y = left + self.height / 2
+        self.x = left + self.width / 2.0
 
     @property
     def right(self) :
@@ -205,4 +206,4 @@ class Sprite(EventObject) :
 
     @right.setter
     def right(self, right) :
-        self.y = right - self.height / 2
+        self.x = right - self.width / 2.0

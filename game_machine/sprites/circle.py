@@ -11,7 +11,7 @@ class Circle(VectorSprite) :
         super(Circle, self).__init__(coords, visible, interactive,
                                      line_colour, line_width, fill_colour)
         self.radius = radius
-        self._radius = radius + (self.line_width / 2)
+        self._radius = radius + int(self.line_width / 2)
         self.size = (self._radius * 2, self._radius * 2)
 
     def over(self, coords) :
@@ -23,7 +23,7 @@ class Circle(VectorSprite) :
         super(Circle, self).fill_surface()
         if self._fill_colour != None :
             pygame.draw.circle(self._surface, self._fill_colour, \
-                               (self._radius, self._radius),
+                               (int(self._radius), int(self._radius)),
                                self.radius, 0)
         if self.line_width > 0 :
             pygame.draw.circle(self._surface, self._line_colour, \

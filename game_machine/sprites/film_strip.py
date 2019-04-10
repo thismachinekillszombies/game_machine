@@ -9,31 +9,31 @@ class FilmStrip(Sprite) :
                  aperture,
                  no_of_frames = None,
                  frame = 0,
-                 co_ords = (0, 0),
+                 coords = (0, 0),
                  visible = True,
                  interactive = True,
                  transparency = True,
                  stop_frames = []) :
         
-        super(FilmStrip, self).__init__(co_ords, visible, \
+        super(FilmStrip, self).__init__(coords, visible, \
                                         interactive, transparency)
         self.size = aperture
         self._image = pygame.image.load(image_file)
         if transparency :
             self._image = self._image.convert_alpha()
-        
+
         self.__image_size = self._image.get_width(), self._image.get_height()
         self.__image_centre = self.__image_size[0] / 2, self.__image_size[1] / 2
-        self._fw = self._image.get_width() / self.size[0]
-        self._fh = self._image.get_height() / self.size[1]
+        self._fw = int(self._image.get_width() / self.size[0])
+        self._fh = int(self._image.get_height() / self.size[1])
         if no_of_frames == None :
-            self.no_of_frames = self._fw * self._fh
+            self.no_of_frames = int(self._fw * self._fh)
         else :
             self.no_of_frames = no_of_frames
         self._frame = frame
         self._frames_pos = [(-(f % self._fw) * self.size[0],
-                             -(f / self._fw) * self.size[1])
-                            for f in xrange(self.no_of_frames)]
+                             -int(f / self._fw) * self.size[1])
+                            for f in range(self.no_of_frames)]
         self._fill_needed = True
         self.stop_frames = stop_frames
 
@@ -79,7 +79,7 @@ class FilmStrip(Sprite) :
     @frame.setter
     def frame(self, frame) :
         old_frame = self._frame
-        self._frame = frame
+        self._frame = int(frame)
         self._fill_needed = True
         if frame != old_frame :
             self.trigger('frame_change',
