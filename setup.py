@@ -6,7 +6,7 @@ with open("README.md", "r") as fh :
 setup(
     name = 'game_machine',
     packages = find_packages(),
-    version = '0.4',
+    version = '0.5',
     description = 'A 2D sprite based game engine/PyGame wrapper',
     url="https://github.com/thismachinekillszombies/game_machine",
     long_description = long_description,
